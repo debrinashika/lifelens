@@ -1,0 +1,60 @@
+<a-entity
+  id="audioAnalyser"
+  audioanalyser="fftSize: 32; enableBeatDetection: false; enableLevels: false; enableWaveform: false; enableVolume: false"></a-entity>
+
+<a-entity id="stage" no-frustum-cull follow-z="target: #curveFollowRig">
+>
+<a-entity id="medical-environment" position="0 0 0">
+  <!-- Dinding-dinding klinik/ruang pertolongan pertama -->
+  <a-entity id="clinic-walls">
+    <a-box id="wall-back" position="0 1.5 -4" width="8" height="3" depth="0.1" material="color: #FAFAFA; roughness: 0.2"></a-box>
+    <a-box id="wall-left" position="-4 1.5 0" rotation="0 90 0" width="8" height="3" depth="0.1" material="color: #FAFAFA; roughness: 0.2"></a-box>
+    <a-box id="wall-right" position="4 1.5 0" rotation="0 90 0" width="8" height="3" depth="0.1" material="color: #FAFAFA; roughness: 0.2"></a-box>
+    <a-box id="floor" position="0 0 0" rotation="-90 0 0" width="8" height="8" depth="0.1" material="color: #F0F0F0; roughness: 0.3"></a-box>
+    <a-box id="ceiling" position="0 3 0" rotation="-90 0 0" width="8" height="8" depth="0.1" material="color: #FFFFFF; roughness: 0.1"></a-box>
+  </a-entity>
+
+  <!-- Red Cross/Simbol medis -->
+  <a-entity id="medical-cross" position="0 1.8 -3.95">
+    <a-box position="0 0 0" width="0.8" height="0.2" depth="0.05" material="color: #E63946"></a-box>
+    <a-box position="0 0 0" width="0.2" height="0.8" depth="0.05" material="color: #E63946"></a-box>
+  </a-entity>
+
+
+
+  <a-entity id="first-aid-kit" position="2.5 0.5 -3.5" rotation="0 -15 0">
+    <a-box width="1" height="0.6" depth="0.3" material="color: #FFFFFF; roughness: 0.3"></a-box>
+    <a-box width="1.02" height="0.62" depth="0.32" material="color: #E63946; opacity: 0.9; wireframe: true"></a-box>
+    <a-entity position="0 0 0.16" rotation="0 0 0">
+      <a-box width="0.4" height="0.1" depth="0.01" material="color: #E63946"></a-box>
+      <a-box width="0.1" height="0.4" depth="0.01" material="color: #E63946"></a-box>
+    </a-entity>
+  </a-entity>
+
+
+  </a-entity>
+
+
+  <a-entity id="ceiling-light" position="0 2.95 0">
+    <a-box width="2" height="0.1" depth="0.5" material="color: #F0F0F0; metalness: 0.3"></a-box>
+    <a-entity light="type: point; color: #FFFFFF; intensity: 0.8; distance: 10"></a-entity>
+  </a-entity>
+
+
+  <a-entity id="emergency-light" position="3.9 2.5 0" rotation="0 -90 0">
+    <a-cylinder radius="0.1" height="0.1" material="color: #323232"></a-cylinder>
+    <a-entity light="type: spot; color: #E63946; intensity: 0.4; angle: 45; penumbra: 0.2" position="0 0 0" rotation="-90 0 0"></a-entity>
+  </a-entity>
+</a-entity>
+
+
+<a-entity 
+  id="backglow-override"
+  position="0 1.5 0"
+  geometry="primitive: sphere; radius: 15" 
+  material="shader: flat; color: #F8F8FF; side: back; opacity: 0.7"
+  render-order="stage"></a-entity>
+
+
+  <require path="templates/intro.html"></require>
+</a-entity>

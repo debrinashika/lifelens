@@ -1,0 +1,51 @@
+{% set text = 'Lifelens First Aid Trainer (v1.0)\n\n' %}
+{% set text = text + 'Aplikasi pelatihan pertolongan pertama berbasis VR/AR yang dirancang untuk memberikan panduan interaktif dan responsif dalam situasi darurat.\n\n' %}
+{% set text = text + 'Menggunakan kontrol gesture, suara, dan peta spasial untuk memberikan simulasi yang realistis dan edukatif.\n\n' %}
+{% set text = text + 'Materi mencakup CPR, luka bakar, tersedak, dan lainnya — disusun berdasarkan panduan medis resmi.\n\n' %}
+{% set text = text + 'Dirancang untuk digunakan di perangkat HoloLens 2 dan platform WebXR yang kompatibel.\n\n' %}
+
+<a-entity
+  id="news"
+  bind__visible="menuActive && !menuSelectedChallenge.id && !isMenuOpening"
+  position="2.365374194652176 1.6 -1.1952715561051024"
+  rotation="0 -60 0"
+  render-order="menuitem">
+
+  <a-entity
+    id="newsBackground"
+    bind-toggle__raycastable="menuActive && !menuSelectedChallenge.id && !isMenuOpening"
+    geometry="primitive: plane; width: 2.1; height: 1.9"
+    material="shader: panelShader; ratio: 1.14; brightness: 0.2"></a-entity>
+
+  <a-entity
+    id="newsText"
+    mixin="font"
+    text="align: left; color: #FAFAFA; baseline: center; width: 1.6; wrapCount: 50; value: {{ text }}"
+    position="0 -0.04 0.0"></a-entity>
+</a-entity>
+
+<a-entity
+  id="support"
+  bind__visible="menuActive && !menuSelectedChallenge.id && !isMenuOpening && inVR"
+  position="2.365374194652176 0.25 -1.1952715561051024"
+  rotation="-15 -60 0"
+  render-order="menuitem">
+
+  <a-entity
+    id="supportBackground"
+    bind-toggle__raycastable="menuActive && !menuSelectedChallenge.id && !isMenuOpening"
+    geometry="primitive: plane; width: 2.1; height: 0.9"
+    material="shader: panelShader; ratio: 1.14; brightness: 0.2"></a-entity>
+
+  <a-entity
+    id="supportImage"
+    geometry="primitive: plane; width: 0.6; height: 0.5"
+    material="shader: flat; src: /assets/img/banner.jpg"
+    position="-0.5 0 0.001"></a-entity>
+
+  <a-entity
+    id="supportText"
+    mixin="font"
+    text="align: left; color: #FAFAFA; baseline: center; width: 1; wrapCount: 30; value: Support Moon Rider's hosting and development by purchasing Supermedium. The VR Comic Book Reader for Oculus Quest.\nA new way to experience comics, in vivid grand scale and comfort.\n\nFree demo available at supermedium.com"
+    position="0.35 -0.04 0.001"></a-entity>
+</a-entity>
