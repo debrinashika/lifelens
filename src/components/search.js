@@ -108,8 +108,26 @@ AFRAME.registerComponent('search', {
     let url = `https://beatsaver.com/api/search/text/CURRENT_PAGE_INDEX?sortOrder=Rating&automapper=true&q=${encodeURIComponent(query)}`;
 
     if (this.data.playlist) {
-      url = `https://api.beatsaver.com/playlists/id/${this.data.playlist}/CURRENT_PAGE_INDEX`;
-    } else if (this.data.genre) {
+      // Instead of fetching from external URL, use local steps data
+      const allPlaylists = require('../constants/playlists');
+      const playlist = allPlaylists.find(p => p.name === this.data.playlist);
+      
+      if (!playlist) return;
+    
+      const stepsAsSearchResults = playlist.steps.map((step, i) => ({
+        id: `${this.data.playlist}-${i + 1}`,
+        title: `Langkah ${i + 1}`,
+        description: step,
+        playlist: this.data.playlist
+      }));
+    
+      this.eventDetail.results = stepsAsSearchResults;
+      this.eventDetail.query = '';
+      console.log('Search Result (Playlist Steps):', this.eventDetail.results); //
+      this.el.sceneEl.emit('searchresults', this.eventDetail);
+      return;
+    }
+     else if (this.data.genre) {
       const genreMap = {
         'Pop': 'pop',
         'R&B': 'rb',

@@ -61,13 +61,13 @@
     "promise-polyfill": "^8.1.0",
     "style-loader": "^0.23.1",
     "super-nunjucks-loader": "^2.0.0",
+    "unzip-js": "^1.0.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.2.0",
     "webpack-glsl-loader": "^1.0.1",
     "webpack-sources": "1.0.1",
-    "zip-loader": "github:ngokevin/ziploader#xhrdist",
-    "unzip-js": "^1.0.0"
+    "zip-loader": "github:ngokevin/ziploader#xhrdist"
   },
   "overrides": {
     "aframe-render-order-component": {
@@ -79,6 +79,7 @@
   },
   "devDependencies": {
     "cross-env": "4.0.0",
+    "gh-pages": "^6.3.0",
     "ghpages": "0.0.10",
     "semistandard": "10.0.0",
     "shx": "^0.2.2",

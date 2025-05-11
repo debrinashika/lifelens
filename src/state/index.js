@@ -6,7 +6,7 @@ const convertBeatmap = require('../lib/convert-beatmap');
 const challengeDataStore = {};
 let HAS_LOGGED_VR = false;
 const NUM_LEADERBOARD_DISPLAY = 10;
-const SEARCH_PER_PAGE = 6;
+const SEARCH_PER_PAGE = 1;
 const SONG_NAME_TRUNCATE = 22;
 const SONG_SUB_NAME_RESULT_TRUNCATE = 32;
 const SONG_SUB_NAME_DETAIL_TRUNCATE = 55;
@@ -640,6 +640,7 @@ AFRAME.registerState({
     playlistclear: (state, playlist) => {
       state.menuSelectedChallenge.id = '';
       state.playlist = '';
+      state.playlistMenuOpen = true;
     },
 
     playlistselect: (state, playlist) => {
@@ -653,6 +654,7 @@ AFRAME.registerState({
 
     playlistmenuclose: state => {
       state.playlistMenuOpen = false;
+      
     },
 
     playlistmenuopen: state => {
@@ -880,25 +882,29 @@ function computeSearchPagination(state) {
 
   state.searchResultsPage.length = 0;
   state.searchResultsPage.__dirty = true;
+  
   for (let i = state.search.page * SEARCH_PER_PAGE;
     i < state.search.page * SEARCH_PER_PAGE + SEARCH_PER_PAGE; i++) {
     const result = state.search.results[i];
     if (!result) { break; }
     state.searchResultsPage.push(result);
 
+    // Ganti songName dan songSubName dengan title dan description dari langkah
     state.search.songNameTexts +=
-      truncate(result.metadata.songName, SONG_NAME_TRUNCATE).toUpperCase() + '\n';
+      truncate(result.title, SONG_NAME_TRUNCATE).toUpperCase() + '\n';
     state.search.songSubNameTexts +=
-      truncate((result.metadata.songSubName || result.metadata.songAuthorName || 'Unknown Artist'),
-        SONG_SUB_NAME_RESULT_TRUNCATE) + '\n';
+      truncate(result.description || 'Unknown Description') + '\n';
   }
 
   for (let i = 0; i < state.searchResultsPage.length; i++) {
     state.searchResultsPage[i].index = i;
   }
 
+  console.log( state.search.songNameTexts)
+
   computeMenuSelectedChallengeIndex(state);
 }
+
 
 function truncate(str, length) {
   if (!str) { return ''; }

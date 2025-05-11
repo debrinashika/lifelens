@@ -3,22 +3,24 @@
 <!-- TODO: Sort the layout based on the IDs. -->
 <a-entity id="searchResultList"
   bind-for="for: item; in: searchResultsPage; key: id; template: #searchResultTemplate; updateInPlace: true; pool: 6; delay: 25"
-  layout="type: box; columns: 1; marginRow: -0.2; orderAttribute: data-index" search-result-list position="0 0.644 0">
+  layout="type: box; orderAttribute: data-index" search-result-list position="0 0.644 0">
 </a-entity>
 
 <!-- All search result text merged and spaced out. -->
-<a-entity id="searchSongNameTexts" mixin="font" bind__text="value: search.songNameTexts" render-order="menutext"
-  text="baseline: top; align: left; color: #FAFAFA; wrapCount: 28; lineHeight: 130" position="0.181 0.51943 0.001">
-</a-entity>
-<a-entity id="searchSongSubNameTexts" mixin="font"
-  bind__text="color: colorSecondaryBright; value: search.songSubNameTexts" render-order="menutext"
-  text="baseline: top; align: left; wrapCount: 42; lineHeight: 190" position="0.181 0.445 0.001">
+
+<a-entity id="searchSongNameTexts" mixin="font"
+  bind__text="value: search.songNameTexts"
+  render-order="menutext"
+  text="baseline: center; align: center; color: #FAFAFA; wrapCount: 20; lineHeight: 130; height: auto; width: auto;"
+  position="0 0.35 0.001" scale="1.5 1.5 1.5">
 </a-entity>
 
-<a-entity id="searchThumbnailImages" bind__search-thumbnail-atlas="dummyUpdater: search.songSubNameTexts"
-  bind__visible="searchResultsPage.length > 0" geometry="primitive: plane; buffer: false; width: 0.2; height: 1.2"
-  dynamic-texture-atlas="canvasId: thumbnailAtlasMap; canvasWidth: 64; canvasHeight: 512; numColumns: 1; numRows: 6"
-  material="shader: flat; transparent: true" render-order="menubutton" position="-0.45 0.0146 0.002"></a-entity>
+<a-entity id="searchSongSubNameTexts" mixin="font"
+  bind__text="color: colorSecondaryBright; value: search.songSubNameTexts"
+  render-order="menutext"
+  text="baseline: center; align: center; wrapCount: 35; lineHeight: 70"
+  position="0 0.15 0.001" scale="1.2 1.2 1.2">
+</a-entity>
 
 <a-mixin id="searchPageButton"
   animation__mouseenter="property: components.slice9.material.opacity; from: 0; to: 0.3; startEvents: mouseenter; pauseEvents: mouseleave; dur: 150"
@@ -28,19 +30,25 @@
 
 <a-entity id="searchPrevPage" mixin="searchPageButton" bind__slice9="color: colorPrimary"
   bind__visible-raycastable="search.hasPrev && (mainMenuActive || isSearching)"
-  raycaster-target="bindToggle: search.hasNext && menuActive; position: 0 0.08 0" position="-0 0.69 0.01"
-  proxy-event="event: click; to: a-scene; as: searchprevpage; captureBubbles: true">
-  <a-entity id="prevArrow" bind__material="color: colorPrimary" geometry="primitive: plane; width: 0.12; height: 0.12"
-    material="shader: flat; src: #downIconImg; transparent: true" rotation="0 0 180" position="0 0 -0.001"></a-entity>
+  raycaster-target="bindToggle: search.hasNext && menuActive; position: 0 -0.5 0"
+  position="-0.6 0 0.01" proxy-event="event: click; to: a-scene; as: searchprevpage; captureBubbles: true">
+  <a-entity id="prevArrow" bind__material="color: colorPrimary"
+    geometry="primitive: plane; width: 0.1; height: 0.12"
+    material="shader: flat; src: #downIconImg; transparent: true"
+    rotation="0 0 -90" position="0 0 -0.001"></a-entity>
 </a-entity>
 
 <a-entity id="searchNextPage" mixin="searchPageButton" bind__slice9="color: colorSecondary"
   raycaster-target="bindToggle: search.hasNext && (mainMenuActive || isSearching); position: 0 -0.08 0"
-  position="-0 -0.674 0.01" proxy-event="event: click; to: a-scene; as: searchnextpage; captureBubbles: true"
+  position="0.6 0 0.01" proxy-event="event: click; to: a-scene; as: searchnextpage; captureBubbles: true"
   bind__visible="search.hasNext">
-  <a-entity id="nextArrow" bind__material="color: colorSecondary" geometry="primitive: plane; width: 0.12; height: 0.12"
-    material="shader: flat; src: #downIconImg; transparent: true" position="0 0 -0.001"></a-entity>
+  <a-entity id="nextArrow" bind__material="color: colorSecondary"
+    geometry="primitive: plane; width: 0.1; height: 0.12"
+    material="shader: flat; src: #downIconImg; transparent: true"
+    rotation="0 0 90" position="0 0 -0.001"></a-entity>
 </a-entity>
+
+
 {% endmacro %}
 
 {% raw %}
@@ -52,7 +60,7 @@
       bind-toggle__raycastable="mainMenuActive || isSearching" bind__material="color: colorPrimary"
       animation__mouseenter="property: components.material.material.opacity; to: 0.4; startEvents: mouseenter; pauseEvents: mouseleave; dur: 75; delay: 1"
       animation__mouseleave="property: components.material.material.opacity; to: 0.0; startEvents: mouseleave; pauseEvents: mouseenter; dur: 75"
-      geometry="primitive: plane; width: 1.1; height: 0.2"
+    
       material="shader: flat; transparent: true; opacity: 0.0; src: #selectedImg" position="0 -0.13 -0.002"
       play-sound="event: mouseenter; sound: #hoverSound; volume: 0.03" render-order="menuitem"></a-entity>
   </a-entity>
@@ -74,7 +82,48 @@
     render-order="menu" position="0 0 -0.005"></a-entity>
 
   <a-entity id="mainMenu" bind__visible="mainMenuActive && !isMenuOpening || isSearching">
+    <a-entity id="searchResultsContainer" position="0 0 0.001" class="menuAnimation"
+      bind__menu-slide-animation="isSearching: isSearching; menuSelectedChallengeId: menuSelectedChallenge.id"
+      animation__menuleft="property: object3D.position.x; to: -0.79; dur: 200; easing: easeOutCubic; autoplay: false"
+      animation__menuright="property: object3D.position.x; from: -0.79; to: 0; dur: 200; easing: easeOutCubic; autoplay: false">
 
+      {{ searchResults() }}
+    </a-entity>
+
+    <a-entity id="menuDifficultiesGroup" position="0 0.18 0">
+
+      <!-- Top-aligned. -->
+      <!-- Uses bind-for and bind-item to render difficulties. -->
+      <a-entity id="menuDifficulties" bind-for="for: item; in: menuDifficultiesIds; updateInPlace: true; pool: 10"
+        bind__visible="!!menuSelectedChallenge.id"
+        layout="type: box; columns: 1; marginRow: -0.2; orderAttribute: data-bind-for-key" position="0 0.34 0"
+        menu-difficulty-select>
+        {% raw %}
+        <template>
+          <!-- Item is a string representing the difficulty. -->
+          <a-entity class="difficultyOption" bind-item__data-difficulty="item">
+            <a-entity class="difficultyBackground"
+              bind-item__active-item="active: (menuSelectedChallenge.difficultyId === item)"
+              bind-item__animation__mouseenter="enabled: !(menuSelectedChallenge.difficultyId === item)"
+              bind-item__animation__mouseleave="enabled: !(menuSelectedChallenge.difficultyId === item)"
+              bind-item__difficulty-background="enabled: menuActive && !!menuSelectedChallenge.id && !(menuSelectedChallenge.difficultyId === item) && !difficultyFilterMenuOpen"
+              bind__material="color: colorPrimary" geometry="primitive: plane; width: 0.4; height: 0.2"
+              material="shader: flat; transparent: true; opacity: 0.0; src: #difficultyImg" position="0 -0.005 0"
+              play-sound="event: mouseenter; sound: #hoverSound; volume: 0.03"
+              animation__mouseenter="property: components.material.material.opacity; to: 0.3; startEvents: mouseenter; pauseEvents: mouseleave; dur: 75"
+              event-set__mouseenter="visible: true"
+              animation__mouseleave="property: components.material.material.opacity; to: 0.0; startEvents: mouseleave; pauseEvents: mouseenter; dur: 75"
+              event-set__mouseleave="visible: true; _delay: 160" render-order="menuitem"></a-entity>
+            <a-entity class="difficultyText" mixin="font"
+              bind-item__active-text-color="active: (menuSelectedChallenge.difficultyId === item)"
+              bind-item__difficulty-text="id: item" active-text-color="color: #fff"
+              text="wrapCount: 30; align: center; color: #8d8d8d" position="0 -0.057 0.001" render-order="menutext">
+            </a-entity>
+          </a-entity>
+        </template>
+        {% endraw %}
+      </a-entity>
+    </a-entity>
 
     <!-- Selected challenge info. -->
     <a-entity id="menuSelectedChallengePanel" bind__visible="!!menuSelectedChallenge.id"
@@ -108,10 +157,34 @@
           text="align: center; color: #989898; wrapCount: 55; lineHeight: 72; width: 1.5; baseline: top"></a-entity>
       </a-entity>
 
+      <a-entity id="playButton"
+        bind__visible-raycastable="menuActive && !!menuSelectedChallenge.id && !genreMenuOpen && !difficultyFilterMenuOpen && !isIOS && !hasSongLoadError"
+        geometry="primitive: plane; width: 0.7; height: 0.25"
+        play-sound="event: mouseenter; sound: #hoverSound; volume: 0.03"
+        play-sound__click="event: click; sound: #confirmSound; volume: 0.25" position="0 -0.561 0"
+        proxy-event="event: click; to: a-scene; as: playbuttonclick"
+        material="shader: panelShader; brightness: 0.7; transparent: true; midSection: 0; ratio: 2.8; borderRadius: 0.6; borderWidth: 0.08"
+        render-order="menubutton"
+        animation__mouseenter1="property: components.material.material.uniforms.activePanel.value; from: 0; to: 1; startEvents: mouseenter; pauseEvents: mouseleave; dur: 100"
+        animation__mouseleave1="property: components.material.material.uniforms.activePanel.value; from: 1; to: 0; startEvents: mouseleave; pauseEvents: mouseenter; dur: 100"
+        animation__mouseenter2="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; startEvents: mouseenter; pauseEvents: mouseleave; dur: 100"
+        animation__mouseleave2="property: scale; to: 1 1 1; from: 1.1 1.1 1.1; startEvents: mouseleave; pauseEvents: mouseenter; dur: 100">
+        <a-entity mixin="font" text="align: center; color: #FFF; wrapCount: 15; value: PLAY" position="0 -0.085 0.01">
+        </a-entity>
+      </a-entity>
 
+      <a-entity id="iOSNotice" bind__visible="mainMenuActive && isIOS" mixin="font" position="0 -0.5 0.01"
+        text="align: center; baseline: top; color: #FFF; wrapCount: 32; value: Sorry, iOS is currently not playable but support is coming soon!">
+      </a-entity>
 
-
+      <a-entity id="menuLoadError" bind__visible="hasSongLoadError" mixin="font" position="0 -0.5 0.01"
+        text="align: center; baseline: top; color: #FFF; wrapCount: 32; value: Sorry! There was an error loading this song.">
+      </a-entity>
     </a-entity>
+
+    <a-entity id="searchError" mixin="font" bind__visible="search.hasError" render-order="menuText"
+      text="align: center; value: Sorry, there was an issue fetching search results. Please try again."
+      position="0 0 0.01"></a-entity>
 
     <a-entity id="menuNoPlaylists" mixin="font"
       bind__visible="playlist === 'favorites' && favorites.length === 0 && !menuSelectedChallenge.id"
@@ -155,7 +228,7 @@
 <a-entity id="menuTopButtons"
   animation__position="property: object3D.position.z; to: -1.98; dur: 1500; easing: easeInOutCubic; delay: 300; startEvents: startgame"
   layout="type: line; margin: 0.65" position="-0.95 2.30 -1.96"
-  proxy-event="event: startgame; to: #searchButton, #difficultyButton, #genreButton, #optionButton, #playlistButton">
+  proxy-event="event: startgame; to: #searchButton, #difficultyButton, #genreButton, #playlistButton, #optionButton">
 
   <!-- Playlist menu toggle. -->
     <a-entity id="playlistButtons">
@@ -176,18 +249,18 @@
       play-sound__hover="event: mouseenter; sound: #hoverSound; volume: 0.1"
       play-sound__click="event: click; sound: #clearSound"
       proxy-event="event: click; to: a-scene; as: playlistclear">
-      <a-entity mixin="bigMenuTopButtonFont" text="align: center; color: #FFF; wrapCount: 20; value: CLEAR PLAYLIST"></a-entity>
+      <a-entity mixin="bigMenuTopButtonFont" text="align: center; color: #FFF; wrapCount: 20; value: BACK"></a-entity>
     </a-entity>
 
     <a-entity
       id="playlistText"
       mixin="font"
-      bind__text="color: colorPrimary"
       bind__text-uppercase="value: playlistTitle"
       bind__visible="mainMenuActive && !!playlist"
-      text="align: center; baseline: bottom; wrapCount: 30; width: 0.7"
+      text="align: center; baseline: bottom; wrapCount: 30; width: 0.7; color: #000000"
       position="0 0.1 0.035"
       render-order="menutext"></a-entity>
+
   </a-entity>
 
  

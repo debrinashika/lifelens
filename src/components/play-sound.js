@@ -38,6 +38,7 @@ AFRAME.registerComponent('play-sound', {
 
   init: function () {
     this.el.addEventListener(this.data.event, evt => {
+      console.log(this.src)
       if (!this.data.enabled) { return; }
       this.system.playSound(this.src, this.data.volume);
     });
@@ -45,6 +46,7 @@ AFRAME.registerComponent('play-sound', {
 
   update: function () {
     this.src = this.data.sound;
+    console.log(this.src)
     if (this.data.sound.startsWith('#')) {
       this.src = document.querySelector(this.data.sound).getAttribute('src');
     }
