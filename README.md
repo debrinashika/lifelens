@@ -1,7 +1,8 @@
 # **Lifelens - Immersive VR Medical Training** 🚑🕶️  
 
-Lifelens is an interactive **VR medical simulator** designed to teach **CPR and first aid techniques** through realistic, hands-on practice in a virtual environment. Whether you're a **medical student, first responder, or just want to learn emergency procedures**, Lifelens provides an engaging and risk-free way to master critical skills.  
 ---
+
+Lifelens is an interactive **VR medical simulator** designed to teach **CPR and first aid techniques** through realistic, hands-on practice in a virtual environment. Whether you're a **medical student, first responder, or just want to learn emergency procedures**, Lifelens provides an engaging and risk-free way to master critical skills.  
 
 ## **✨ Features**  
 
@@ -55,8 +56,3 @@ Then open **`http://localhost:3000`** in your browser.
 ### **🚑 Ready to Save Lives? Try Lifelens Now!**  
 🔗 **[https://debrinashika.github.io/lifelens/](https://debrinashika.github.io/lifelens/)**  
 
-⭐ **Star the repo if you like it!** ⭐  
-
----
-
-Would you like me to add anything else? Maybe a roadmap, FAQs, or a video demo link? 😊
