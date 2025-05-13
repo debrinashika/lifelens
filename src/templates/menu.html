@@ -22,6 +22,45 @@
   position="0 0.15 0.001" scale="1.2 1.2 1.2">
 </a-entity>
 
+<!-- CPR Simulation Area -->
+<a-entity id="cpr-avatar-container" 
+       position="0.8 -1.3 0.9" 
+       bind__visible="gameMode === 'simulation'"
+       >
+  <!-- CPR Avatar -->
+  <a-entity id="cpr-avatar"
+            gltf-model="#avatarModel"
+            position="0 0 0"
+            rotation="-80 110 -5"
+            scale="1 1 1"
+            visible="true"
+            animation__success="property: position; to: 0 0.1 0; dur: 300; easing: easeOutElastic; startEvents: cpr-success; dir: alternate; loop: 3">
+  </a-entity>
+
+  <!-- Chest button with improved visibility and interaction -->
+  <a-sphere id="chest-button"
+            position="-1.3 0.3 0.35"
+            radius="0.07"
+            color="#FF0000"
+            material="shader: flat; transparent: true; opacity: 0.8"
+            chest-blinker
+            animation__hover="property: scale; to: 1.2 1.2 1.2; startEvents: mouseenter; dir: alternate; dur: 200"
+            animation__leave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200"
+            animation__click="property: scale; to: 0.8 0.8 0.8; startEvents: click; dir: alternate; dur: 100">
+  </a-sphere>
+
+  <!-- CPR Instructions -->
+  <a-entity id="cpr-instructions" 
+            position="0 0.4 0.1"
+            mixin="font"
+            text="value: Click the red button to practice CPR compressions; align: center; width: 0.8; color: #000000; wrapCount: 30"
+            animation__fade="property: text.opacity; from: 0.7; to: 1; dir: alternate; dur: 2000; loop: true">
+  </a-entity>
+
+  <a-sound id="instructionSound" src="#instructionSoundAsset" position="0 0 0" volume="0.5"></a-sound>
+  <a-sound id="successSound" src="#successSoundAsset" position="0 0 0" volume="0.5"></a-sound>
+</a-entity>
+
 <a-mixin id="searchPageButton"
   animation__mouseenter="property: components.slice9.material.opacity; from: 0; to: 0.3; startEvents: mouseenter; pauseEvents: mouseleave; dur: 150"
   animation__mouseleave="property: components.slice9.material.opacity; from: 0.3; to: 0; startEvents: mouseleave; pauseEvents: mouseenter; dur: 150"
@@ -47,8 +86,6 @@
     material="shader: flat; src: #downIconImg; transparent: true"
     rotation="0 0 90" position="0 0 -0.001"></a-entity>
 </a-entity>
-
-
 {% endmacro %}
 
 {% raw %}
@@ -70,7 +107,8 @@
 
 <!-- Menu container begins here. -->
 <a-entity id="menu" bind__visible="menuActive" position="0 1.4 -2.3"
-  animation__position="property: object3D.position.z; to: -2; dur: 1500; easing: easeInOutCubic; delay: 300; startEvents: startgame">
+  animation__position="property: object3D.position.z; to: -2; dur: 1500; easing: easeInOutCubic; delay: 300; startEvents: startgame"
+  cpr-simulation="active: false">
 
   <a-entity id="menuBackground"
     bind__menu-midsection="active: !!menuSelectedChallenge.id && (mainMenuActive || difficultyFilterMenuOpen) || difficultyFilterMenuOpen; selectedChallenge: menuSelectedChallenge.id"
@@ -85,7 +123,8 @@
     <a-entity id="searchResultsContainer" position="0 0 0.001" class="menuAnimation"
       bind__menu-slide-animation="isSearching: isSearching; menuSelectedChallengeId: menuSelectedChallenge.id"
       animation__menuleft="property: object3D.position.x; to: -0.79; dur: 200; easing: easeOutCubic; autoplay: false"
-      animation__menuright="property: object3D.position.x; from: -0.79; to: 0; dur: 200; easing: easeOutCubic; autoplay: false">
+      animation__menuright="property: object3D.position.x; from: -0.79; to: 0; dur: 200; easing: easeOutCubic; autoplay: false"
+      animation__cprtoggle="property: components.cpr-simulation.active; from: false; to: true; startEvents: cpr-toggle; dir: alternate">
 
       {{ searchResults() }}
     </a-entity>

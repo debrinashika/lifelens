@@ -9,11 +9,8 @@ const iconPositions = {
 };
 
 const modeMap = {
-  classicvr: 'classic',
-  punchvr: 'punch',
-  ride2d: 'ride',
-  ridevr: 'ride',
-  viewer2d: 'viewer'
+  simulation: 'simulation',
+  tutorial: 'tutorial',
 };
 
 AFRAME.registerComponent('menu-mode', {
@@ -27,6 +24,7 @@ AFRAME.registerComponent('menu-mode', {
       const item = evt.target.closest('[data-mode]');
       const mode = item.dataset.mode;
       const name = item.dataset.name;
+       console.log('Mode clicked:', { mode, name });
       this.el.sceneEl.emit('gamemode', mode, false);
       if (this.data.hasVR) {
         localStorage.setItem('gameMode', name);
