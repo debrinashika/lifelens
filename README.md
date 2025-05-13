@@ -1,6 +1,6 @@
 # **Lifelens - Immersive VR Medical Training** 🚑🕶️  
 
-**Experience life-saving training like never before!** Lifelens is an interactive **VR medical simulator** designed to teach **CPR and first aid techniques** through realistic, hands-on practice in a virtual environment. Whether you're a **medical student, first responder, or just want to learn emergency procedures**, Lifelens provides an engaging and risk-free way to master critical skills.  
+Lifelens is an interactive **VR medical simulator** designed to teach **CPR and first aid techniques** through realistic, hands-on practice in a virtual environment. Whether you're a **medical student, first responder, or just want to learn emergency procedures**, Lifelens provides an engaging and risk-free way to master critical skills.  
 ---
 
 ## **✨ Features**  
