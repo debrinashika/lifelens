@@ -7,7 +7,8 @@ module.exports = [
     'Periksa pernapasan korban.',
     'Jika tidak bernapas, lanjut ke CPR.',
     'Jika korban sadar, tenangkan dan tunggu bantuan medis.',
-    'Selalu cuci tangan setelah memberikan pertolongan.'
+    'Selalu cuci tangan setelah memberikan pertolongan.',
+    ''
   ]},
   { name: '1002', author: 'Step-by-step guidance on CPR and rescue breathing techniques', title: 'CPR and Emergency Breathing',
     steps: [
@@ -16,7 +17,8 @@ module.exports = [
       'Mulai kompresi dada: tekan tengah dada sedalam 5-6 cm, 100-120 kali/menit.',
       'Setelah 30 kompresi, beri 2 napas bantuan (jika terlatih).',
       'Ulangi siklus 30:2 sampai bantuan datang atau korban sadar.',
-      'Gunakan AED segera setelah tersedia, ikuti instruksinya.'
+      'Gunakan AED segera setelah tersedia, ikuti instruksinya.',
+      ''
     ]
   },
   { name: '1003', author: 'Treating cuts, bleeding, and how to apply bandages effectively', title: 'Bleeding and Wound Care',
@@ -26,7 +28,8 @@ module.exports = [
       'Jika darah tembus, tambahkan kain baru tanpa melepas yang lama.',
       'Angkat bagian tubuh yang terluka jika memungkinkan.',
       'Balut luka dengan perban secara ketat, tapi tidak menghambat aliran darah.',
-      'Cari bantuan medis jika perdarahan tidak berhenti atau luka parah.'
+      'Cari bantuan medis jika perdarahan tidak berhenti atau luka parah.',
+      ''
     ]
    },
   { name: '1004', author: 'How to stabilize fractures and use immobilization techniques', title: 'Fractures and Immobilization',
@@ -36,7 +39,8 @@ module.exports = [
       'Bungkus dengan kain atau perban untuk menjaga posisi tetap.',
       'Pastikan sirkulasi darah tidak terhambat.',
       'Hindari memberi makan atau minum jika korban harus dioperasi.',
-      'Segera bawa ke fasilitas medis.'
+      'Segera bawa ke fasilitas medis.',
+      ''
     ]
    },
   { name: '1005', author: 'First aid response for different degrees of burns', title: 'Burns: Response and Treatment',
@@ -46,7 +50,8 @@ module.exports = [
       'Lepas pakaian atau perhiasan di sekitar area yang terbakar (jangan yang menempel).',
       'Tutup luka bakar dengan kain bersih dan lembut.',
       'Jangan oleskan es, mentega, atau bahan asing lainnya.',
-      'Segera cari bantuan medis untuk luka bakar serius.'
+      'Segera cari bantuan medis untuk luka bakar serius.',
+      ''
     ]
    },
   { name: '1006', author: 'Handling choking emergencies for adults and children', title: 'Choking: Adult and Child',
@@ -56,7 +61,8 @@ module.exports = [
       'Peluk bagian perut, tekan ke dalam dan ke atas dengan cepat.',
       'Ulangi sampai benda keluar atau korban tidak sadar.',
       'Jika tidak sadar, baringkan dan lakukan CPR.',
-      'Untuk anak di bawah 1 tahun: gunakan 5 pukulan punggung dan 5 dorongan dada.'
+      'Untuk anak di bawah 1 tahun: gunakan 5 pukulan punggung dan 5 dorongan dada.',
+      ''
     ]
    },
   { name: '1007', author: 'Recognizing and managing shock, including recovery position', title: 'Shock and Recovery Position' ,
@@ -66,7 +72,8 @@ module.exports = [
       'Jangan beri makan atau minum.',
       'Periksa pernapasan dan denyut nadi secara berkala.',
       'Jika korban tidak sadar tapi bernapas, posisikan ke posisi pemulihan.',
-      'Segera cari bantuan medis.'
+      'Segera cari bantuan medis.',
+      ''
     ]
   },
   { name: '1008', author: 'How to respond to seizures and diabetic crises', title: 'Seizures and Diabetic Emergencies',
@@ -76,7 +83,8 @@ module.exports = [
       'Lindungi kepala korban dengan bantal atau pakaian.',
       'Setelah kejang berhenti, posisikan korban miring (posisi pemulihan).',
       'Jika korban sadar dan diabetes, beri makanan/minuman manis jika gula darah rendah.',
-      'Hubungi bantuan medis bila kejang berlangsung lebih dari 5 menit atau korban tidak sadar.'
+      'Hubungi bantuan medis bila kejang berlangsung lebih dari 5 menit atau korban tidak sadar.',
+      ''
     ]
    },
 ];

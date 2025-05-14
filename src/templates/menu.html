@@ -6,6 +6,7 @@
 </a-entity>
 
 <a-entity id="searchSongNameTexts" mixin="font"
+bind__visible="search.hasNext && (mainMenuActive || isSearching)"
   bind__text="value: search.songNameTexts"
   render-order="menutext"
   text="baseline: center; align: center; color: #FAFAFA; wrapCount: 20; lineHeight: 130; height: auto; width: auto;"
@@ -13,10 +14,24 @@
 </a-entity>
 
 <a-entity id="searchSongSubNameTexts" mixin="font"
+bind__visible="search.hasNext && (mainMenuActive || isSearching)"
   bind__text="color: colorSecondaryBright; value: search.songSubNameTexts"
   render-order="menutext"
   text="baseline: center; align: center; wrapCount: 35; lineHeight: 70"
   position="0 0.15 0.001" scale="1.2 1.2 1.2">
+</a-entity>
+
+<a-entity id="thankYouMessage" mixin="font"
+   bind__visible="!search.hasNext && (mainMenuActive || isSearching)"
+   position="0 0.35 0.001" scale="1.5 1.5 1.5" visible="false">
+  <a-entity 
+    text="value: Thank You!; align: center; color: #FAFAFA; wrapCount: 20; lineHeight: 130"
+    position="0 0 0">
+  </a-entity>
+  <a-entity 
+    text="value: You've reached the end of results; align: center; color: #FAFAFA; wrapCount: 25; lineHeight: 70"
+    position="0 -0.15 0" scale="0.8 0.8 0.8">
+  </a-entity>
 </a-entity>
 
 <!-- CPR Simulation Area -->
@@ -156,6 +171,7 @@
     material="shader: flat; src: #downIconImg; transparent: true"
     rotation="0 0 90" position="0 0 -0.001"></a-entity>
 </a-entity>
+
 {% endmacro %}
 
 {% raw %}

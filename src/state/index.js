@@ -166,6 +166,8 @@ AFRAME.registerState({
       hasError: false,
       hasNext: false,
       hasPrev: false,
+      isFinalPage: false,
+      onLastRealPage: false,
       query: '',
       queryText: '',
       results: [],
@@ -876,6 +878,8 @@ function computeSearchPagination(state) {
   let numPages = Math.ceil(state.search.results.length / SEARCH_PER_PAGE);
   state.search.hasPrev = state.search.page > 0;
   state.search.hasNext = state.search.page < numPages - 1;
+  state.search.isFinalPage = state.search.page === numPages + 1;
+  state.search.onLastRealPage = state.search.page === numPages;
 
   state.search.songNameTexts = '';
   state.search.songSubNameTexts = '';

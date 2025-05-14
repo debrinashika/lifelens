@@ -22,6 +22,8 @@ AFRAME.registerComponent('cpr-simulation', {
     this.compressionCount++;
     this.updateCounter();
     
+    this.el.sceneEl.setAttribute('cpr', 'count', this.compressionCount);
+
     // Trigger success animation and sound
     this.el.sceneEl.emit('cpr-success');
    
