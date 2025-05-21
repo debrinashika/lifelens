@@ -117,9 +117,11 @@ AFRAME.registerComponent('search', {
       const stepsAsSearchResults = playlist.steps.map((step, i) => ({
         id: `${this.data.playlist}-${i + 1}`,
         title: `Langkah ${i + 1}`,
-        description: step,
+        description: step.step,
+        pics: step.image, 
         playlist: this.data.playlist
       }));
+
     
       this.eventDetail.results = stepsAsSearchResults;
       this.eventDetail.query = '';

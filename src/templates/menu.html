@@ -13,26 +13,42 @@ bind__visible="search.hasNext && (mainMenuActive || isSearching)"
   position="0 0.35 0.001" scale="1.5 1.5 1.5">
 </a-entity>
 
+<a-entity id="searchResultImage"
+  bind__visible="search.hasNext && (mainMenuActive || isSearching)"
+  geometry="primitive: plane; width: 1; height: 1"
+  bind__material="shader: flat; src: search.pics; transparent: true"
+  position="0 0 0.001" scale="0.5 0.5 0.5">
+</a-entity>
+
 <a-entity id="searchSongSubNameTexts" mixin="font"
 bind__visible="search.hasNext && (mainMenuActive || isSearching)"
   bind__text="color: colorSecondaryBright; value: search.songSubNameTexts"
   render-order="menutext"
   text="baseline: center; align: center; wrapCount: 35; lineHeight: 70"
-  position="0 0.15 0.001" scale="1.2 1.2 1.2">
+  position="0 -0.45 0.001" scale="1.2 1.2 1.2">
 </a-entity>
 
 <a-entity id="thankYouMessage" mixin="font"
    bind__visible="!search.hasNext && (mainMenuActive || isSearching)"
+   render-order="menutext"
    position="0 0.35 0.001" scale="1.5 1.5 1.5" visible="false">
   <a-entity 
     text="value: Thank You!; align: center; color: #FAFAFA; wrapCount: 20; lineHeight: 130"
     position="0 0 0">
   </a-entity>
   <a-entity 
-    text="value: You've reached the end of results; align: center; color: #FAFAFA; wrapCount: 25; lineHeight: 70"
-    position="0 -0.15 0" scale="0.8 0.8 0.8">
+    text="value: You've reached the end of results; align: center; color: #FAFAFA; wrapCount: 30; lineHeight: 70"
+    position="0 -0.1 0"">
   </a-entity>
 </a-entity>
+
+<a-entity id="cpr-counter2" mixin="font"
+bind__visible="!search.hasNext && (mainMenuActive || isSearching) && gameMode === 'simulation'"
+ render-order="menutext"
+   text="value: Compressions: 0; align: center; width: 1; color: #FFFFFF; wrapCount: 25"
+  position="0 -0.4 0.001" scale="1.2 1.2 1.2">
+</a-entity>
+
 
 <!-- CPR Simulation Area -->
 <a-entity id="cpr-avatar-container" 
