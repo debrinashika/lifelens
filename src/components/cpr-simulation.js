@@ -7,6 +7,7 @@ AFRAME.registerComponent('cpr-simulation', {
   init: function() {
     this.compressionCount = 0;
     this.counterEl = document.querySelector('#cpr-counter');
+    this.counterEl2 = document.querySelector('#cpr-counter2');
     this.colorIndex = 0;
     this.colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'];
     
@@ -40,6 +41,9 @@ AFRAME.registerComponent('cpr-simulation', {
   updateCounter: function() {
     if (this.counterEl) {
       this.counterEl.setAttribute('text', 'value', `Compressions: ${this.compressionCount}`);
+    }
+    if (this.counterEl2) {
+      this.counterEl2.setAttribute('text', 'value', `Compressions: ${this.compressionCount} / 30`);
     }
   },
   

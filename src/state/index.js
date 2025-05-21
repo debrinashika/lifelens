@@ -174,6 +174,7 @@ AFRAME.registerState({
       songNameTexts: '',  // All names in search results merged together.
       songSubNameTexts: '',  // All sub names in search results merged together.
       // url and urlPage are used to load more results from the API when scrolling down
+      pics:'',
       url: '',
       urlPage: 0,
     },
@@ -883,6 +884,7 @@ function computeSearchPagination(state) {
 
   state.search.songNameTexts = '';
   state.search.songSubNameTexts = '';
+  state.search.pics = '';
 
   state.searchResultsPage.length = 0;
   state.searchResultsPage.__dirty = true;
@@ -898,6 +900,8 @@ function computeSearchPagination(state) {
       truncate(result.title, SONG_NAME_TRUNCATE).toUpperCase() + '\n';
     state.search.songSubNameTexts +=
       truncate(result.description || 'Unknown Description') + '\n';
+    state.search.pics += result.pics|| 'assets/img/favorite.png'  + '\n';
+
   }
 
   for (let i = 0; i < state.searchResultsPage.length; i++) {
