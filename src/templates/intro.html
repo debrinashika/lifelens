@@ -46,3 +46,36 @@
     animation="property: components.text.material.uniforms.opacity.value; from: 0; to: 1; dur: 500; delay: 3500"
     ></a-entity>
 </a-entity>
+
+<a-entity
+  id="pinchTutorial"
+  bind__visible-raycastable="introActive"
+  position="2.365374194652176 2 -1.1952715561051024"
+  rotation="0 -60 0"
+  render-order="menuitem">
+
+  <!-- Background panel -->
+  <a-entity
+    id="pinchBackground"
+    geometry="primitive: plane; width: 1.8; height: 1.8"
+    material="shader: panelShader; ratio: 1.14; brightness: 0.2">
+  </a-entity>
+
+  <!-- Gambar gesture pinch -->
+  <a-image
+    id="pinchImg"
+    src="#pinchGestureImage"  
+    width="1"
+    height="0.5"
+    position="0 0.2 0.01">
+  </a-image>
+
+  <!-- Teks penjelasan gesture -->
+  <a-entity
+    id="pinchText"
+    render-order="menutext"
+    text="align: center; color: #FAFAFA; baseline: center; width: 1.2; wrapCount: 35; value: Lakuka pinch gesture untuk memilih tombol atau melanjutkan. Fitur ini mendeteksi gerakan tangan Anda secara otomatis."
+    position="0 -0.3 0.01">
+  </a-entity>
+  
+</a-entity>
